@@ -13,6 +13,12 @@ class Customer
   attr_reader :id
 
   def reviews
+    sql = <<-SQL
+    SELECT *
+    FROM reviews
+    JOIN customer ON reviews.customer_id = customer.id
+    GROUP BY customer.name
+    SQL
   end
 
   def restaurants
